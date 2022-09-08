@@ -1,0 +1,55 @@
+---
+title: "Posterior Predictive Checking for Partially Observed Stochastic Epidemic Models"
+output: html_document
+---
+
+This repository contains `R` code for implementing the methods presented in
+
+>Aristotelous G., Kypraios, T. and O'Neil, P.D. (2022) Posterior Predictive Checking for Partially Observed Stochastic Epidemic Models, *Bayesian Analysis*; to appear.  
+
+which addresses the problem of assessing the fit of stochastic epidemic models to data. 
+
+Two novel model assessment methods are developed and presented in the manuscript above, based on disease progression curves, namely the *distance method* and the *position-time method*. Both methods provide visual and quantitative outputs with meaningful interpretations. 
+
+We illustrate both methods by applying them to data from an outbreak which occurred in a boarding school in England and led to 102 cases among 1307 students [Smith *et al.*, 2009](https://www.eurosurveillance.org/content/10.2807/ese.14.27.19263-en).
+
+We first source the necessary `R` functions which implement the proposed methods.
+
+```{r}
+source("functions.R")
+```
+
+The observed data are provided in the form of new daily cases (see Figure 1 in [Smith *et al.*, 2009](https://www.eurosurveillance.org/content/10.2807/ese.14.27.19263-en).)  which we transform to individual removal times, under our assumption that case-detections correspond to recoveries. 
+
+A homogeneously mixing SIR model with an Exponential infectious period distribution was fitted within a Bayesian framework. We then produced 500 replicated removal data sets from their respective posterior predictive distributions, conditioning on the final size being the same as for the observed data.
+
+We load both the real data (`R.obs`) as well as the 500 samples from the posterior predictive distribution of the removal times (`R.STAR`):
+
+```{r}
+load("example_Smith2009.RData")
+R.obs
+```
+
+# Distance Method
+
+We implement the *distance method* by calling the function `distance.method` which takes as argument (i) a vector with the observed removal times (`R.obs`) and (ii) a matrix containing the  replicated removal curves (`R.STAR`). There are also some optional arguments in the function `distance.method` which are concerned with various plotting settings. 
+
+```{r}
+distance.method(R.obs = R.obs, R.STAR = R.STAR)
+```
+
+The `distance.method` functions produces first a plot of the observed removal curve (as provided in `R.obs`) and the (shifted) removal curves from the posterior predictive distribution (as provided in `R.STAR`) with the mean removal curve, $\bar{z}_{t}^{rep}$ (red, dashed line), and the observed removal curve, $z_t^{obs}$ (black, solid line), imposed. Furthermore, it produces a histogram of the 500 replications from the posterior predictive distribution of the distance, $T_d^{rep}$, with the observed distance, $T_d^{obs}$ (black, dashed line), overlaid and the corresponding folded ppp-value stated.
+
+# Position-time method:
+
+We implement the *position-time* method using the function `position.time.method` which similarly to the `distance.method` function, requires the same two arguments; a vector with the observed removal times (`R.obs`) and a matrix with replicated removal curves (`R.STAR`):
+
+```{r}
+position.time.method(R.obs = R.obs, R.STAR = R.STAR)
+```
+
+The output of the `position.time.function` also provides first a plot of the observed removal curve (as provided in `R.obs`) and the (shifted) removal curves from the posterior predictive distribution (as provided in `R.STAR`) with the mean removal curve, $\bar{z}_{t}^{rep}$ (red, dashed line), and the observed removal curve, $z_t^{obs}$ (black, solid line), imposed.  
+
+It then produces a history plot of the ppp-value$(t)$ with the 0.05, 0.5 and 0.95 inverse quantiles (red, dashed lines) imposed. The function also returns a table with the proportion of time that $z_t^{obs}$ spends in the inverse quantile intervals of $z_t^{rep}$ from the position-time method.
+
+For more details about each of the two methods we refer the reader to the manuscript.
