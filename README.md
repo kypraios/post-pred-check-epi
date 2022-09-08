@@ -14,9 +14,9 @@ We illustrate both methods by applying them to data from an outbreak which occur
 
 ##  Usage 
 
-The file `functions.R` contains several `R` functions, two of which are the `distance.method` and `position.time.method` and they correspond to the two different methods for assessing the goodness of fit of a stochastic epidemic model when fitted to data. Both function require as arguments a vector with the observed removal curve (i.e. recovery times) and a matrix containing samples from the posterior predictive distribution of the removal times once the model has been fitted. 
+The file `functions.R` contains several `R` functions, two of which are the `distance.method` and `position.time.method` and they correspond to the two different methods for assessing the goodness of fit of a stochastic epidemic model when fitted to data. Both functions require two arguments (i) a vector with the observed removal curve (i.e. recovery times) and (ii) a matrix containing samples from the posterior predictive distribution of the removal times once the model has been fitted. 
 
-The two methods can be implemented by calling these two functions as follows:
+The two methods can be implemented as follows:
 
 `distance.method(R.obs, R.STAR)`
 
@@ -24,4 +24,4 @@ The two methods can be implemented by calling these two functions as follows:
 
 where `R.obs` denotes the vector with the observed removal curves and `R.STAR` denotes the sampled removal curves.
 
-We reproduce some the results in Section 8 in the `illustration.Rmd`
+We further illustrate these two methods by reproducing some the results in Section 8 in the `illustration.Rmd` file. 
