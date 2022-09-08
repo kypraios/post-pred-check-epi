@@ -4,7 +4,7 @@ Posterior Predictive Checking for Partially Observed Stochastic Epidemic Models
 
 ## Overview
 
-This repository contains `R` code for implementing the methods presented in
+This repository contains `R` code (created by [Georgios Aristotelous](https://github.com/giorgos-aristotelous)) for implementing the methods presented in
 
 >Aristotelous G., Kypraios, T. and O'Neil, P.D. (2022) Posterior Predictive Checking for Partially Observed Stochastic Epidemic Models, *Bayesian Analysis*; to appear.  
 
