@@ -6,7 +6,7 @@ Posterior Predictive Checking for Partially Observed Stochastic Epidemic Models
 
 This repository contains `R` code (created by [Georgios Aristotelous](https://github.com/giorgos-aristotelous)) for implementing the methods presented in
 
->Aristotelous G., Kypraios, T. and O'Neil, P.D. (2022) Posterior Predictive Checking for Partially Observed Stochastic Epidemic Models, *Bayesian Analysis*; to appear.  
+>Aristotelous G., Kypraios, T. and O'Neill, P.D. (2022) Posterior Predictive Checking for Partially Observed Stochastic Epidemic Models, *Bayesian Analysis*; to appear.  
 
 which addresses the problem of assessing the fit of stochastic epidemic models to data. Two novel model assessment methods are developed and presented in the manuscript above, based on disease progression curves, namely the **distance method** and the **position-time method**. Both methods provide visual and quantitative outputs with meaningful interpretations. 
 
@@ -24,4 +24,4 @@ The two methods can be implemented as follows:
 
 where `R.obs` denotes the vector with the observed removal curves and `R.STAR` denotes the sampled removal curves.
 
-We further illustrate these two methods by reproducing some the results in Section 8 in the `illustration.Rmd` file. 
+We further illustrate these two methods by reproducing some of the results in Section 8 in the `illustration.Rmd` file. 
